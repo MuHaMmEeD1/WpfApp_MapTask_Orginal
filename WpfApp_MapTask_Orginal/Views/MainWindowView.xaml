@@ -1,0 +1,129 @@
+﻿<NavigationWindow x:Class="WpfApp_MapTask_Orginal.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_MapTask_Orginal.Views"
+        xmlns:Mt="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:map="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+                  
+        mc:Ignorable="d"
+        Title="MainWindowView" Height="450" Width="800" ShowsNavigationUI="False">
+
+    <NavigationWindow.Content>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+
+
+            </Grid.ColumnDefinitions>
+
+
+            <Grid.Resources>
+                <Style TargetType="map:Pushpin">
+                    <Setter Property="Width" Value="30"/>
+                    <Setter Property="Height" Value="30"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="map:Pushpin">
+
+                                <Border CornerRadius="15" Background="#5C24E5">
+                                    <Border 
+                                    Width="24" Height="24" 
+                                    CornerRadius="12" Background="White"
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center">
+
+
+                                        <Label Content="{TemplateBinding Content}" FontSize="8"
+                                           Margin="0" Padding="0"
+                                           HorizontalContentAlignment="Center"
+                                           VerticalContentAlignment="Center"
+                                           />
+
+                                    </Border>
+                                </Border>
+
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+
+                </Style>
+            </Grid.Resources>
+
+
+
+            <ComboBox 
+                
+                Name="ComboBox"
+                 
+                Height="50"
+                Width="200"
+                VerticalAlignment="Top"
+                Margin="0 100 0 0"
+                
+                ItemsSource="{Binding Bus_ids}" 
+                SelectedItem="{Binding SelectedBus}"
+                >
+
+            </ComboBox>
+
+
+            <Button
+                
+                
+                Height="50"
+                Width="120"
+                VerticalAlignment="Top"
+                Margin="0 250 0 0"
+                Content="Axdar"
+                Command = "{Binding SecBus}"
+                CommandParameter = "{Binding SelectedBus}"
+              
+                
+                ></Button>
+
+
+
+
+            <Grid Grid.Column="1">
+
+
+                <map:Map
+                    
+                    Name="Map"
+                    
+                    CredentialsProvider="AhvdI062CQRj-AsBiBj9zqQsq3KxXr7TK14fsTkNaQgL3qsG_Ls0gjxXLHUvgmuV"
+                    
+                    Mode="Aerial"
+                   
+                    Center="40.448338000000005,50.003491000000006"
+                    
+                    ZoomLevel="10"
+                   
+                    >
+
+                   
+
+                </map:Map>
+
+
+
+
+
+            </Grid>
+
+
+        </Grid>
+
+
+    </NavigationWindow.Content>
+
+</NavigationWindow>
